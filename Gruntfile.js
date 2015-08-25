@@ -55,6 +55,27 @@ module.exports = function(grunt) {
 			]
 		},
 
+		bump: {
+			options: {
+				files: [
+					'bower.json',
+					'package.json'
+				],
+				commit: true,
+				commitMessage: 'Release: v%VERSION%',
+				commitFiles: [
+					'bower.json',
+					'package.json',
+					'dist/*.js'
+				],
+				createTag: true,
+				tagName: '%VERSION%',
+				tagMessage: 'Version %VERSION%',
+				push: false,
+				pushTo: 'origin'
+			}
+		},
+
 		changelog: {
 			options: {}
 		},
@@ -78,6 +99,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('lint', ['jshint', 'jscs']);
 	grunt.registerTask('test', ['lint', 'simplemocha']);
 	grunt.registerTask('build', ['test', 'concat', 'comments', 'uglify']);
+	grunt.registerTask('release', ['build', 'bump']);
 
 	grunt.registerTask('default', []);
 };
