@@ -66,7 +66,8 @@ module.exports = function(grunt) {
 				commitFiles: [
 					'bower.json',
 					'package.json',
-					'dist/*.js'
+					'dist/*.js',
+					'dist/*.js.map'
 				],
 				createTag: true,
 				tagName: '%VERSION%',
