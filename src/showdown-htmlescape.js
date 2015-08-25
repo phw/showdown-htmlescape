@@ -40,23 +40,23 @@ THE SOFTWARE.
 			// First hash existing code blocks, those will be esacaped
 			// by the corresponding parser.
 			if (options.ghCodeBlocks) {
-				text = text.replace(/(?:^|\n)(```(.*)\n([\s\S]*?)\n```)/g,
-					function(wholeMatch, m1) {
-						return hashCodeBlock(m1);
+				text = text.replace(/(^|\n)(```(.*)\n([\s\S]*?)\n```)/g,
+					function(wholeMatch, m1, m2) {
+						return m1 + hashCodeBlock(m2);
 					}
 				);
 			}
 
 			text = text.replace(
-				/(?:\n\n|^)((?:(?:[ ]{4}|\t).*\n+)+)(\n*[ ]{0,3}(?![^ \t\n])|(?=~0))/g,
-				function(wholeMatch, m1) {
-					return hashCodeBlock(m1);
+				/(\n\n|^)((?:(?:[ ]{4}|\t).*\n+)+)(\n*[ ]{0,3}(?![^ \t\n])|(?=~0))/g,
+				function(wholeMatch, m1, m2, m3) {
+					return m1 + hashCodeBlock(m2) + '\n' + m3;
 				});
 
 			text = text.replace(
 				/(?=(^|[^\\]))((`+)([^\r]*?[^`])\3)(?!`)/gm,
-				function(wholeMatch, m1, m2) {
-					return hashCodeBlock(m2);
+				function(wholeMatch) {
+					return hashCodeBlock(wholeMatch);
 				});
 
 			// Hash > characters used to mark block quotes
