@@ -37,6 +37,11 @@ THE SOFTWARE.
 			}
 
 			text += '~0';
+			text = text.replace(/(^[ \t]*>([ \t]*>)*)(?=.*?$)/gm, function(
+				wholeMatch) {
+				wholeMatch = wholeMatch.replace(/>/g, '~Q');
+				return wholeMatch;
+			});
 			if (options.ghCodeBlocks) {
 				text = text.replace(/(^|\n)(```(.*)\n([\s\S]*?)\n```)/g,
 					function(wholeMatch, m1, m2) {
@@ -44,23 +49,17 @@ THE SOFTWARE.
 					}
 				);
 			}
-
 			text = text.replace(
-				/(\n\n|^)((?:(?:[ ]{4}|\t).*\n+)+)(\n*[ ]{0,3}(?![^ \t\n])|(?=~0))/g,
+				/((?:(?:(?: |\t|~Q)*?~Q)?\n){2}|^(?:(?: |\t|~Q)*?~Q)?)((?:(?:(?: |\t|~Q)*?~Q)?(?:[ ]{4}|\t).*\n+)+)((?:(?: |\t|~Q)*?~Q)?\n*[ ]{0,3}(?![^ \t\n])|(?=(?:(?: |\t|~Q)*?~Q)?~0))/g,
 				function(wholeMatch, m1, m2, m3) {
-					return m1 + hashCodeBlock(m2) + '\n' + m3;
+					return m1 + hashCodeBlock(m2) + m3;
 				});
 
 			text = text.replace(
-				/(?=(^|[^\\]))((`+)([^\r]*?[^`])\3)(?!`)/gm,
+				/(^|[^\\])((`+)([^\r]*?[^`])\3)(?!`)/gm,
 				function(wholeMatch) {
 					return hashCodeBlock(wholeMatch);
 				});
-			text = text.replace(/(^[ \t]*>([ \t]*>)*)(?=.*?$)/gm, function(
-				wholeMatch) {
-				wholeMatch = wholeMatch.replace(/>/g, '~Q');
-				return wholeMatch;
-			});
 			text = text.replace(/&/g, '&amp;');
 			text = text.replace(/</g, '&lt;');
 			text = text.replace(/>/g, '&gt;');
