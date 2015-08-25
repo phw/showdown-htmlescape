@@ -37,7 +37,14 @@ THE SOFTWARE.
 
 			text += '~0';
 
-			// First hash existing code blocks, those will be esacaped
+			// Hash > characters used to mark block quotes
+			text = text.replace(/(^[ \t]*>([ \t]*>)*)(?=.*?$)/gm, function(
+				wholeMatch) {
+				wholeMatch = wholeMatch.replace(/>/g, '~Q');
+				return wholeMatch;
+			});
+
+			// Hash existing code blocks, those will be esacaped
 			// by the corresponding parser.
 			if (options.ghCodeBlocks) {
 				text = text.replace(/(^|\n)(```(.*)\n([\s\S]*?)\n```)/g,
@@ -47,10 +54,15 @@ THE SOFTWARE.
 				);
 			}
 
+			// Find Markdown code blocks, also find those nested in block quotes
+			// m1 ((?:(?:(?: |\t|~Q)*?~Q)?\n){2}|^): Leading empty lines, can contain
+			//                                      block quotes
+			// m2 ((?:(?:(?: |\t|~Q)*?~Q)?(?:[ ]{4}|\t).*\n+)+): The code block lines
+			// m3 ((?:(?: |\t|~Q)*?~Q)?\n*[ ]{0,3}(?![^ \t\n])|(?=~0)): Additional lines
 			text = text.replace(
-				/(\n\n|^)((?:(?:[ ]{4}|\t).*\n+)+)(\n*[ ]{0,3}(?![^ \t\n])|(?=~0))/g,
+				/((?:(?:(?: |\t|~Q)*?~Q)?\n){2}|^(?:(?: |\t|~Q)*?~Q)?)((?:(?:(?: |\t|~Q)*?~Q)?(?:[ ]{4}|\t).*\n+)+)((?:(?: |\t|~Q)*?~Q)?\n*[ ]{0,3}(?![^ \t\n])|(?=(?:(?: |\t|~Q)*?~Q)?~0))/g,
 				function(wholeMatch, m1, m2, m3) {
-					return m1 + hashCodeBlock(m2) + '\n' + m3;
+					return m1 + hashCodeBlock(m2) + m3;
 				});
 
 			text = text.replace(
@@ -58,13 +70,6 @@ THE SOFTWARE.
 				function(wholeMatch) {
 					return hashCodeBlock(wholeMatch);
 				});
-
-			// Hash > characters used to mark block quotes
-			text = text.replace(/(^[ \t]*>([ \t]*>)*)(?=.*?$)/gm, function(
-				wholeMatch) {
-				wholeMatch = wholeMatch.replace(/>/g, '~Q');
-				return wholeMatch;
-			});
 
 			// Escape HTML special chars
 			text = text.replace(/&/g, '&amp;');
