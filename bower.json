@@ -1,0 +1,23 @@
+{
+  "name": "showdown-htmlescape",
+  "version": "0.1.0",
+  "description": "Plugin for Showdown to prevent the use of arbitrary HTML and allow only the specific Markdown syntax.",
+  "main": "dist/showdown-htmlescape.js",
+  "homepage": "https://github.com/phw/showdown-htmlescape",
+  "authors": [
+    "Philipp Wolfer <phil@parolu.de>"
+  ],
+  "keywords": [
+    "markdown",
+    "showdown"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "test/",
+    "Gruntfile.js"
+  ],
+  "dependencies": {
+    "showdown": "~1.2.0"
+  }
+}
