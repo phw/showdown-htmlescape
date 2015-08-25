@@ -54,7 +54,7 @@ THE SOFTWARE.
 				});
 
 			text = text.replace(
-				/(?=(^|[^\\]))((`+)([^\r]*?[^`])\3)(?!`)/gm,
+				/(^|[^\\])((`+)([^\r]*?[^`])\3)(?!`)/gm,
 				function(wholeMatch) {
 					return hashCodeBlock(wholeMatch);
 				});
