@@ -6,7 +6,48 @@ the use of arbitrary HTML and allows only the specific Markdown syntax.
 This is useful if you want to allow your users to format text using the Markdown
 syntax but you do not want them to directly enter HTML.
 
-## Example
+## Installation
+
+### With [bower](http://bower.io/)
+
+    bower install showdown-htmlescape
+
+### With [npm](http://npmjs.org)
+
+    npm install showdown-htmlescape
+
+### Manual
+
+You can also [download the latest release zip or tarball](https://github.com/phw/showdown-htmlescape/releases) and include the file `dist/showdown-htmlescape.js` directly in your project.
+
+## Enabling the extension
+
+### Browser
+
+You have to include both Showdown and the Showdown HTML Escape extension in your
+project:
+
+```HTML
+<script src="showdown.min.js"></script>
+<script src="showdown-htmlescape.min.js"></script>
+```
+
+After including the extension in your application, you just need to enable it
+for your Showdown converter:
+
+```JavaScript
+var converter = new showdown.Converter({extensions: ['htmlescape']});
+```
+
+### Node.js
+
+```JavaScript
+var showdown = require('showdown'),
+  showdownHtmlEscape = require('showdown-htmlescape');
+var converter = new showdown.Converter({ extensions: [showdownHtmlEscape] });
+```
+
+## Usage example
 
 ```JavaScript
 var converter = new showdown.Converter({extensions: ['htmlescape']}),
@@ -16,7 +57,8 @@ var converter = new showdown.Converter({extensions: ['htmlescape']}),
 ```
 
 This should output:
-```
+
+```HTML
 <p>Allows <strong>Markdown markup</strong>, but does not allow &lt;b&gt;HTML markup&lt;/b&gt;</p>
 ```
 
