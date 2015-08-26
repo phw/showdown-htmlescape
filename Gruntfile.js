@@ -49,7 +49,6 @@ module.exports = function(grunt) {
 				config: '.jscs.json'
 			},
 			src: [
-				'Gruntfile.js',
 				'src/**/*.js',
 				'test/**/*.js'
 			]
@@ -92,6 +91,18 @@ module.exports = function(grunt) {
 					reporter: 'spec'
 				}
 			}
+		},
+
+		mocha_istanbul: {
+			coverage: {
+				src: 'test/node.js', // a folder works nicely
+				options: {
+					globals: ['should'],
+					timeout: 3000,
+					ignoreLeaks: false,
+					reporter: 'spec'
+				}
+			},
 		}
 	};
 
@@ -99,6 +110,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('lint', ['jshint', 'jscs']);
 	grunt.registerTask('test', ['lint', 'simplemocha']);
+	grunt.registerTask('coverage', ['lint', 'mocha_istanbul']);
 	grunt.registerTask('build', ['test', 'concat', 'comments', 'uglify']);
 	grunt.registerTask('release', ['build', 'bump']);
 
