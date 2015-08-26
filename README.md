@@ -1,4 +1,5 @@
 # Showdown HTML Escape plugin
+[![Build Status](https://travis-ci.org/phw/showdown-htmlescape.svg?branch=master)](https://travis-ci.org/phw/showdown-htmlescape) [![npm version](https://badge.fury.io/js/showdown-htmlescape.svg)](http://badge.fury.io/js/showdown-htmlescape) [![Bower version](https://badge.fury.io/bo/showdown-htmlescape.svg)](http://badge.fury.io/bo/showdown-htmlescape)
 
 This plugin for [Showdown](https://github.com/showdownjs/showdown) prevents
 the use of arbitrary HTML and allows only the specific Markdown syntax.
