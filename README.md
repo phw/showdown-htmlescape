@@ -72,4 +72,5 @@ for details.
 
 ## License
 Showdown HTML Escape Copyright &copy; 2015 Philipp Wolfer <phil@parolu.de>
+
 Published under the MIT license, see LICENSE.txt for details.
