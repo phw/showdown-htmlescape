@@ -17,3 +17,13 @@ cache:
 
 script: grunt coverage
 after_script: CODECLIMATE_REPO_TOKEN=397bd063807e728c91cf94873adede1dd2c0f220ba66078463d3c3f2d8aeb03d codeclimate-test-reporter < ./coverage/lcov.info
+
+deploy:
+  provider: npm
+  email: "ph.wolfer@gmail.com"
+  api_key:
+    secure: ihq396rpP2drAAPNZdsAQXyzZlHS0BHfexBcJ/QwjL+hfrq/T0nMx+A/Bc5yjHy2wCdnLp0IANWcZAu5wZZPobGVH5tSE65SHoZKVkdRr5a7jUtYzHsN0K/hMMfxrz3F+W1NEmzJuw2jGfM6hDepUgwFnrD2kz9Sj7cVqBX9z3hJtNYxHXlp1j4FInoeniC3v8t7gwtfpuBJHM5ae57h1nsI85frdVsPwpoEy/NNBC0JI6JlSz6iWTRfejoONX2Uv3FWOl4egssz4WJBD67VGytljTub11Kwcfdu1FhXt3ewBai7pW2Hx1NhjNHdnl+iIUVaGDw6c8XK2+caWyp2XDcQF+dTv5cKfK+0Dg/eLtTr8O0QCBV1fXhamdJqegEVunW1WoXbet+V2JXu36VpvSBrNJ0aBlZTZLMPXHTC47QwUH4dVXwGlop+klJlumQ9iH9vIBxmHRlp86fG7LHLT0//0PVGXuolBJk/GYMDmzmU3wbdZJOnJ/ZCdRV0QQbRdBqgMEFF0uEa4LbFbx6/KIw/vO6iIqI1wMzONf7Ha9orvrjgfCmmKzxk0oiMtpUhLHTU0cJ3iYky9cdNKZzpwBUNplMNYrSNV7f2g5HKrbAQpeKuikQHtZfzWB4eWw0i5AQAJdvSuPWuaTRSz/QfcG1f+EaN0vjl81dUeEviAuA=
+  on:
+    branch: master
+    tags: true
+    node: "0.12"
