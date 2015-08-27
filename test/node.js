@@ -6,12 +6,9 @@
 	var fs = require('fs'),
 		extension = require('../src/showdown-htmlescape.js'),
 		showdown = require('showdown'),
-		converter = new showdown.Converter({
-			extensions: [extension]
-		}),
 		cases = fs.readdirSync('test/cases/')
-		.filter(filter())
-		.map(map('test/cases/')),
+			.filter(filter())
+			.map(map('test/cases/')),
 		issues = [];
 	// issues = fs.readdirSync('test/issues/')
 	//   .filter(filter())
@@ -48,12 +45,22 @@
 				htmlPath = dir + name + '.html',
 				html = fs.readFileSync(htmlPath, 'utf8'),
 				mdPath = dir + name + '.md',
-				md = fs.readFileSync(mdPath, 'utf8');
+				md = fs.readFileSync(mdPath, 'utf8'),
+				optionsPath = dir + name + '.json',
+				options = {};
+
+			try {
+				options = JSON.parse(fs.readFileSync(optionsPath, 'utf8'));
+				options.extensions = [extension];
+			} catch (e) {
+				options.extensions = [extension];
+			}
 
 			return {
 				name: name,
 				input: md,
-				expected: html
+				expected: html,
+				options: options
 			};
 		};
 	}
@@ -83,11 +90,11 @@
 		testCase.actual = testCase.actual.replace(/\n/g, '•\n');
 
 		return testCase;
-
 	}
 
 	function assertion(testCase) {
 		return function() {
+			var converter = new showdown.Converter(testCase.options);
 			testCase.actual = converter.makeHtml(testCase.input);
 			testCase = normalize(testCase);
 
