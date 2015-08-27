@@ -65,6 +65,7 @@ THE SOFTWARE.
 					return m1 + hashCodeBlock(m2) + m3;
 				});
 
+			// Markfown inline code
 			text = text.replace(
 				/(^|[^\\])((`+)([^\r]*?[^`])\3)(?!`)/gm,
 				function(wholeMatch) {
