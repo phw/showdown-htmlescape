@@ -10,6 +10,9 @@ before_install:
   - npm install -g npm@latest
   - npm install -g grunt-cli
   - npm install -g codeclimate-test-reporter
+install:
+  - npm install
+  - npm install showdown
 
 #travis build  speed up
 sudo: false
