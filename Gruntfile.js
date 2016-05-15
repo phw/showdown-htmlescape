@@ -76,8 +76,15 @@ module.exports = function(grunt) {
 			}
 		},
 
-		changelog: {
-			options: {}
+		conventionalChangelog: {
+			options: {
+				changelogOpts: {
+					preset: 'angular',
+				}
+			},
+			release: {
+				src: 'CHANGELOG.md'
+			}
 		},
 
 		//Server-side tests
@@ -112,7 +119,9 @@ module.exports = function(grunt) {
 	grunt.registerTask('test', ['lint', 'simplemocha']);
 	grunt.registerTask('coverage', ['lint', 'mocha_istanbul']);
 	grunt.registerTask('build', ['test', 'concat', 'comments', 'uglify']);
-	grunt.registerTask('release', ['build', 'bump']);
+	grunt.registerTask('release', [
+		'bump-only', 'build', 'conventionalChangelog', 'bump-commit'
+	]);
 
 	grunt.registerTask('default', []);
 };
