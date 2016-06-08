@@ -31,7 +31,7 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-conventional-changelog": "^6.1.0",
-    "grunt-jscs": "^2.1.0",
+    "grunt-jscs": "^3.0.0",
     "grunt-mocha-istanbul": "^5.0.1",
     "grunt-simple-mocha": "^0.4.0",
     "grunt-stripcomments": "^0.5.0",
