@@ -16,9 +16,9 @@ before_install:
   - npm install -g npm@latest
   - npm install -g grunt-cli
   - npm install -g codeclimate-test-reporter
+  - npm install -g showdown@${SHOWDOWN_VERSION}
 
 install:
-  - npm install showdown@${SHOWDOWN_VERSION}
   - npm install
 
 #travis build  speed up
@@ -39,3 +39,4 @@ deploy:
     branch: master
     tags: true
     node: "0.12"
+    condition: "$SHOWDOWN_VERSION = 1.2"
