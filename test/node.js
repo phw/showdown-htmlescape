@@ -80,6 +80,10 @@
 			return x.trim();
 		}).join('\n');
 
+		// Ignore double line breaks
+		testCase.expected = testCase.expected.replace(/\n+/g, '\n');
+		testCase.actual = testCase.actual.replace(/\n+/g, '\n');
+
 		// Remove extra lines
 		testCase.expected = testCase.expected.trim();
 
