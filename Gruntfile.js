@@ -70,7 +70,7 @@ module.exports = function(grunt) {
 				],
 				createTag: true,
 				tagName: '%VERSION%',
-				tagMessage: 'Version %VERSION%',
+				tagMessage: 'chore(release): version %VERSION%',
 				push: false,
 				pushTo: 'origin'
 			}
