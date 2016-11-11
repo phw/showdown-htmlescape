@@ -1,3 +1,9 @@
+<a name="0.1.5"></a>
+## [0.1.5](https://github.com/phw/showdown-htmlescape/compare/0.1.4...v0.1.5) (2016-11-11)
+
+* Tested against showdown 1.5, no functional changes
+
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/phw/showdown-htmlescape/compare/0.1.3...v0.1.4) (2016-08-11)
 

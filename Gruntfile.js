@@ -58,6 +58,7 @@ module.exports = function (grunt) {
         commit: true,
         commitMessage: 'Release: v%VERSION%',
         commitFiles: [
+          'CHANGELOG.md',
           'bower.json',
           'package.json',
           'dist/*.js',
