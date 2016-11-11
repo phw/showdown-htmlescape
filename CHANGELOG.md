@@ -1,3 +1,13 @@
+<a name="0.1.6"></a>
+## [0.1.6](https://github.com/phw/showdown-htmlescape/compare/0.1.5...v0.1.6) (2016-11-11)
+
+
+### Bug Fixes
+
+* **release:** drop official support for node < 4 ([c8d529b](https://github.com/phw/showdown-htmlescape/commit/c8d529b))
+
+
+
 <a name="0.1.5"></a>
 ## [0.1.5](https://github.com/phw/showdown-htmlescape/compare/0.1.4...v0.1.5) (2016-11-11)
 
