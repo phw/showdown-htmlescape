@@ -1,109 +1,110 @@
-(function() {
-	'use strict';
+/* eslint-env mocha */
 
-	require('chai').should();
+(function () {
+  'use strict'
 
-	var fs = require('fs'),
-		extension = require('../src/showdown-htmlescape.js'),
-		showdown = require('showdown'),
-		cases = fs.readdirSync('test/cases/')
-			.filter(filter())
-			.map(map('test/cases/')),
-		issues = [];
-	// issues = fs.readdirSync('test/issues/')
-	//   .filter(filter())
-	//   .map(map('test/issues/'));
+  require('chai').should()
 
-	/////////////////////////////////////////////////////////////////////////////
-	// Test cases
-	//
-	describe('HTML Escape Extension simple testcases', function() {
-		for (var i = 0; i < cases.length; ++i) {
-			it(cases[i].name, assertion(cases[i]));
-		}
-	});
+  var fs = require('fs')
+  var extension = require('../src/showdown-htmlescape.js')
+  var showdown = require('showdown')
+  var cases = fs.readdirSync('test/cases/')
+      .filter(filter())
+      .map(map('test/cases/'))
+  var issues = []
+  // issues = fs.readdirSync('test/issues/')
+  //   .filter(filter())
+  //   .map(map('test/issues/'));
 
-	describe('HTML Escape Extension issues testcase', function() {
-		for (var i = 0; i < issues.length; ++i) {
-			it(issues[i].name, assertion(issues[i]));
-		}
-	});
+  // ///////////////////////////////////////////////////////////////////////////
+  // Test cases
+  //
+  describe('HTML Escape Extension simple testcases', function () {
+    for (var i = 0; i < cases.length; ++i) {
+      it(cases[i].name, assertion(cases[i]))
+    }
+  })
 
-	/////////////////////////////////////////////////////////////////////////////
-	// Test cases
-	//
-	function filter() {
-		return function(file) {
-			var ext = file.slice(-3);
-			return (ext === '.md');
-		};
-	}
+  describe('HTML Escape Extension issues testcase', function () {
+    for (var i = 0; i < issues.length; ++i) {
+      it(issues[i].name, assertion(issues[i]))
+    }
+  })
 
-	function map(dir) {
-		return function(file) {
-			var name = file.replace('.md', ''),
-				htmlPath = dir + name + '.html',
-				html = fs.readFileSync(htmlPath, 'utf8'),
-				mdPath = dir + name + '.md',
-				md = fs.readFileSync(mdPath, 'utf8'),
-				optionsPath = dir + name + '.json',
-				options = {};
+  // ///////////////////////////////////////////////////////////////////////////
+  // Test cases
+  //
+  function filter () {
+    return function (file) {
+      var ext = file.slice(-3)
+      return (ext === '.md')
+    }
+  }
 
-			try {
-				options = JSON.parse(fs.readFileSync(optionsPath, 'utf8'));
-				options.extensions = [extension];
-			} catch (e) {
-				options.extensions = [extension];
-			}
+  function map (dir) {
+    return function (file) {
+      var name = file.replace('.md', '')
+      var htmlPath = dir + name + '.html'
+      var html = fs.readFileSync(htmlPath, 'utf8')
+      var mdPath = dir + name + '.md'
+      var md = fs.readFileSync(mdPath, 'utf8')
+      var optionsPath = dir + name + '.json'
+      var options = {}
 
-			return {
-				name: name,
-				input: md,
-				expected: html,
-				options: options
-			};
-		};
-	}
+      try {
+        options = JSON.parse(fs.readFileSync(optionsPath, 'utf8'))
+        options.extensions = [extension]
+      } catch (e) {
+        options.extensions = [extension]
+      }
 
-	//Normalize input/output
-	function normalize(testCase) {
+      return {
+        name: name,
+        input: md,
+        expected: html,
+        options: options
+      }
+    }
+  }
 
-		// Normalize line returns
-		testCase.expected = testCase.expected.replace(/\r/g, '');
-		testCase.actual = testCase.actual.replace(/\r/g, '');
+  // Normalize input/output
+  function normalize (testCase) {
+    // Normalize line returns
+    testCase.expected = testCase.expected.replace(/\r/g, '')
+    testCase.actual = testCase.actual.replace(/\r/g, '')
 
-		// Ignore all leading/trailing whitespace
-		testCase.expected = testCase.expected.split('\n').map(function(x) {
-			return x.trim();
-		}).join('\n');
-		testCase.actual = testCase.actual.split('\n').map(function(x) {
-			return x.trim();
-		}).join('\n');
+    // Ignore all leading/trailing whitespace
+    testCase.expected = testCase.expected.split('\n').map(function (x) {
+      return x.trim()
+    }).join('\n')
+    testCase.actual = testCase.actual.split('\n').map(function (x) {
+      return x.trim()
+    }).join('\n')
 
-		// Ignore double line breaks
-		testCase.expected = testCase.expected.replace(/\n+/g, '\n');
-		testCase.actual = testCase.actual.replace(/\n+/g, '\n');
+    // Ignore double line breaks
+    testCase.expected = testCase.expected.replace(/\n+/g, '\n')
+    testCase.actual = testCase.actual.replace(/\n+/g, '\n')
 
-		// Remove extra lines
-		testCase.expected = testCase.expected.trim();
+    // Remove extra lines
+    testCase.expected = testCase.expected.trim()
 
-		// Convert whitespace to a visible character so that it shows up on error reports
-		testCase.expected = testCase.expected.replace(/ /g, '·');
-		testCase.expected = testCase.expected.replace(/\n/g, '•\n');
-		testCase.actual = testCase.actual.replace(/ /g, '·');
-		testCase.actual = testCase.actual.replace(/\n/g, '•\n');
+    // Convert whitespace to a visible character so that it shows up on error reports
+    testCase.expected = testCase.expected.replace(/ /g, '·')
+    testCase.expected = testCase.expected.replace(/\n/g, '•\n')
+    testCase.actual = testCase.actual.replace(/ /g, '·')
+    testCase.actual = testCase.actual.replace(/\n/g, '•\n')
 
-		return testCase;
-	}
+    return testCase
+  }
 
-	function assertion(testCase) {
-		return function() {
-			var converter = new showdown.Converter(testCase.options);
-			testCase.actual = converter.makeHtml(testCase.input);
-			testCase = normalize(testCase);
+  function assertion (testCase) {
+    return function () {
+      var converter = new showdown.Converter(testCase.options)
+      testCase.actual = converter.makeHtml(testCase.input)
+      testCase = normalize(testCase)
 
-			// Compare
-			testCase.actual.should.equal(testCase.expected);
-		};
-	}
-})();
+      // Compare
+      testCase.actual.should.equal(testCase.expected)
+    }
+  }
+})()

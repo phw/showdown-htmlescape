@@ -1,7 +1,8 @@
 {
   "end_with_newline": true,
-  "indent_char": "\t",
-  "indent_size": 1,
-  "indent_with_tabs": true,
-  "wrap_line_length": 80
+  "indent_char": " ",
+  "indent_size": 2,
+  "indent_with_tabs": false,
+  "wrap_line_length": 80,
+  "space_after_anon_function": true
 }
