@@ -38,5 +38,5 @@ deploy:
   on:
     branch: master
     tags: true
-    node: "0.12"
+    node: "4"
     condition: "$SHOWDOWN_VERSION = 1.2"
