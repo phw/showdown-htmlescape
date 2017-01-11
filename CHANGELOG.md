@@ -1,3 +1,8 @@
+<a name="0.1.8"></a>
+## [0.1.8](https://github.com/phw/showdown-htmlescape/compare/0.1.7...v0.1.8) (2017-01-11)
+
+
+
 <a name="0.1.7"></a>
 ## [0.1.7](https://github.com/phw/showdown-htmlescape/compare/0.1.6...v0.1.7) (2016-11-11)
 

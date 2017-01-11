@@ -1,4 +1,4 @@
-/*! showdown-htmlescape 11-11-2016 */
+/*! showdown-htmlescape 11-01-2017 */
 
 (function () {
   'use strict'

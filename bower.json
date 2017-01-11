@@ -1,6 +1,6 @@
 {
   "name": "showdown-htmlescape",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Plugin for Showdown to prevent the use of arbitrary HTML and allow only the specific Markdown syntax.",
   "main": "dist/showdown-htmlescape.js",
   "homepage": "https://github.com/phw/showdown-htmlescape",
