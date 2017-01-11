@@ -10,6 +10,7 @@ env:
   - SHOWDOWN_VERSION=1.3
   - SHOWDOWN_VERSION=1.4
   - SHOWDOWN_VERSION=1.5
+  - SHOWDOWN_VERSION=1.6
 
 before_install:
   - '[ "${TRAVIS_NODE_VERSION}" != "0.8" ] || npm install -g npm@1.4.28'
