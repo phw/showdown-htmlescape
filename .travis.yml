@@ -31,7 +31,7 @@ cache:
     - node_modules
 
 script: grunt coverage
-after_script: '[ "${TRAVIS_NODE_VERSION}" = "7" ] && codeclimate-test-reporter < ./coverage/lcov.info'
+after_script: '[ "${TRAVIS_NODE_VERSION}" = "7" ] && [ "${SHOWDOWN_VERSION}" = "1.6" ] && codeclimate-test-reporter < ./coverage/lcov.info'
 
 deploy:
   provider: npm
