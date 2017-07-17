@@ -12,6 +12,7 @@ env:
     - SHOWDOWN_VERSION=1.4
     - SHOWDOWN_VERSION=1.5
     - SHOWDOWN_VERSION=1.6
+    - SHOWDOWN_VERSION=1.7
   global:
     secure: "ar7blupPUbCvi3ys+xaeCmHU2Pci2f95Ybn6MMu2JkZnr+MWzbVoPKGC+2oQQz8FPGMV0ZCnadEVYVZ7429LDlAAixFUEYFyfzgZxb5H/f29mrquYvjgum2IVwmfaiwt8hOH5QajC70H/sU0Eu8LW0xvbBH/OUA81aCNv2FAEVioh+RV+IMfRgL1BBAM+bpj8SSI2K9IXapUSmdu8RFWwCoFkkhDlwZT4I8BIC4arsx4WilBMytLfeYOF1lMrPWHGie6+zMr3gMA/UJObEF+JUnytij/c4JGr20g1eJF7DochUh09WesYAZCF8rtgRksnXepEoys0NUTO9nduftJNIc2E54WL4nhOvcvozPp6WUKlFoyTkVCJUnm0xoGzhIY9nk/rcTbuHygUYDSnePtMX2Gz8K+bUDiBAQA+QOpOWQfkliXN8rHD4hqavSiCGRy/yuZ5rdXzCA/7yCfLzRPVA6cXiIYcd2JodCo0NLJ3vnIWjEgWlTe5LKbvJs6zcyz2zU8jfc9YMaa54jsjalb5CktnRz+dGHl0h9jLwu+wsnHpRVVZgwgIo/k8LAviZnotrmFHpoAz3ScaR3i7yvrkBwuUY2mucJYPh11EhYYs10F7SdC/yHP01ZxjfiyFxJ4NDuFgk+fAv9nDuXOlWJ9meEj1+1RgoA5UzDDFtwQ3Mk="
 
@@ -31,7 +32,7 @@ cache:
     - node_modules
 
 script: grunt coverage
-after_script: '[ "${TRAVIS_NODE_VERSION}" = "7" ] && [ "${SHOWDOWN_VERSION}" = "1.6" ] && codeclimate-test-reporter < ./coverage/lcov.info'
+after_script: '[ "${TRAVIS_NODE_VERSION}" = "7" ] && [ "${SHOWDOWN_VERSION}" = "1.7" ] && codeclimate-test-reporter < ./coverage/lcov.info'
 
 deploy:
   provider: npm
