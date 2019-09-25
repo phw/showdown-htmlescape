@@ -1,5 +1,5 @@
 # Showdown HTML Escape plugin
-[![npm version](https://badge.fury.io/js/showdown-htmlescape.svg)](http://badge.fury.io/js/showdown-htmlescape) 
+[![npm version](https://badge.fury.io/js/showdown-htmlescape.svg)](http://badge.fury.io/js/showdown-htmlescape)
 [![Bower version](https://badge.fury.io/bo/showdown-htmlescape.svg)](http://badge.fury.io/bo/showdown-htmlescape)
 [![Dependency Status](https://david-dm.org/phw/showdown-htmlescape.svg)](https://david-dm.org/phw/showdown-htmlescape)
 [![devDependency Status](https://david-dm.org/phw/showdown-htmlescape/dev-status.svg)](https://david-dm.org/phw/showdown-htmlescape#info=devDependencies)
@@ -44,24 +44,24 @@ After including the extension in your application, you just need to enable it
 for your Showdown converter:
 
 ```JavaScript
-var converter = new showdown.Converter({extensions: ['htmlescape']});
+var converter = new showdown.Converter({extensions: ['htmlescape']})
 ```
 
 ### Node.js
 
 ```JavaScript
-var showdown = require('showdown'),
-  showdownHtmlEscape = require('showdown-htmlescape');
-var converter = new showdown.Converter({ extensions: [showdownHtmlEscape] });
+var showdown = require('showdown')
+var showdownHtmlEscape = require('showdown-htmlescape')
+var converter = new showdown.Converter({ extensions: [showdownHtmlEscape] })
 ```
 
 ## Usage example
 
 ```JavaScript
-var converter = new showdown.Converter({extensions: ['htmlescape']}),
-    input = 'Allows **Markdown markup**, but does not allow <b>HTML markup</b>',
-    html = converter.makeHtml(input);
-    console.log(html);
+var converter = new showdown.Converter({extensions: ['htmlescape']})
+var input = 'Allows **Markdown markup**, but does not allow <b>HTML markup</b>'
+var html = converter.makeHtml(input)
+console.log(html)
 ```
 
 This should output:
